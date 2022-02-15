@@ -44,23 +44,36 @@ func main() {
 		// userName = "Tom"
 		// userTickets = 2
 
-		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, firstName+" "+lastName)
+		if userTickets < remainingTickets {
+			remainingTickets = remainingTickets - userTickets
+			bookings = append(bookings, firstName+" "+lastName)
 
-		// fmt.Printf("The whole Slice: %v\n", bookings)
-		// fmt.Printf("The first value: %v\n", bookings[0])
-		// fmt.Printf("Slice type: %T\n", bookings)
-		// fmt.Printf("Slice length: %v\n", len(bookings))
+			// fmt.Printf("The whole Slice: %v\n", bookings)
+			// fmt.Printf("The first value: %v\n", bookings[0])
+			// fmt.Printf("Slice type: %T\n", bookings)
+			// fmt.Printf("Slice length: %v\n", len(bookings))
 
-		// fmt.Printf("User %v booked %v tickets.\n", firstName, userTickets)
-		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
-		firstNames := []string{}
-		for _, booking := range bookings {
-			var names = strings.Fields(booking)
-			// fmt.Printf("Booking %v\n", booking)
-			firstNames = append(firstNames, names[0])
+			// fmt.Printf("User %v booked %v tickets.\n", firstName, userTickets)
+			fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
+			fmt.Printf("Tickets remaining: %v\n", remainingTickets)
+			firstNames := []string{}
+			for _, booking := range bookings {
+				var names = strings.Fields(booking)
+				// fmt.Printf("Booking %v\n", booking)
+				firstNames = append(firstNames, names[0])
+			}
+			fmt.Printf("The first names of bookings are %v\n", firstNames)
+
+			if remainingTickets == 0 {
+				// end program
+				fmt.Println("Our conference is fully booked. Come back next year.")
+				break
+			}
+
+		} else {
+			fmt.Printf("We only have %v tickets remaining. Your booking cannot be processed\n", remainingTickets)
+
 		}
-		fmt.Printf("The first names of bookings are %v\n", firstNames)
 
 	}
 
